@@ -1,11 +1,12 @@
 const router = require('express').Router();
 const { Category, Product } = require('../../models');
+const sequelize = require('../../config/connection');
 
 // The `/api/categories` endpoint
 
 router.get('/', (req, res) => {
-  sequelize.sync({ force: false }).then(() => {
-    app.listen(PORT, () => console.log('Now listening...'));
+  Category.findAll().then((categoryData) => {
+    res.json(categoryData);
   });
 });
 
